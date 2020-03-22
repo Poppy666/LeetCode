@@ -46,5 +46,4 @@ public class Solution225 {
     public boolean empty() {
         return list.peek() == null ? true : false;
     }
-    //test
 }
