@@ -6,6 +6,7 @@ import java.util.Stack;
  * Created with IntelliJ IDEA
  * Project: 最小栈
  * 思路：用两个栈，一个栈专门存放最小的那个数据
+ * push、pop和min操作的时间复杂度为O(1)
  * Author: jingren
  * Date: 2020/3/23
  * Time: 下午5:32

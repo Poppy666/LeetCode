@@ -5,6 +5,7 @@ import java.util.Stack;
 /**
  * Created with IntelliJ IDEA
  * Project: 最小栈
+ * push、pop和min操作的时间复杂度为O(1)
  * https://leetcode-cn.com/problems/min-stack/solution/java-jian-ji-wu-fu-zhu-zhan-by-rabbitzhao-2/
  * Author: jingren
  * Date: 2020/3/23
