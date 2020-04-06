@@ -1,6 +1,7 @@
 package com.leetcode.Queue;
 
 import java.util.Deque;
+import java.util.LinkedList;
 import java.util.Queue;
 
 /**
@@ -17,48 +18,26 @@ import java.util.Queue;
  */
 public class Solution59_II {
 
-    Queue<Integer> que;
-    Deque<Integer> deq;
+    Queue<Integer> que = new LinkedList<>();
+    Deque<Integer> deq = new LinkedList<>();
 
     public int max_value() {
-        return 0;
+        return deq.size()>0?deq.peek():-1;  //双端队列的队首为que的最大值
     }
 
     public void push_back(int value) {
-        //que.
+        que.offer(value);  //value入队
+        while(deq.size()>0 && deq.peekLast()<value){
+            deq.pollLast();  //将deq队尾小于value的元素删掉
+        }
+        deq.offerLast(value);  //将value放在deq队尾
     }
 
     public int pop_front() {
-        return 0;
+        int tmp = que.size()>0?que.poll():-1;  //获得队首元素
+        if(deq.size()>0 && tmp==deq.peek()){
+            deq.poll();  //如果出队的元素是当前最大值，将deq的队首出队
+        }
+        return tmp;
     }
-
-//    LinkedList<Integer> queue = new LinkedList<Integer>();
-//    int max = Integer.MIN_VALUE;
-//
-//    public int max_value() {
-//        if (queue.isEmpty()) {
-//            return -1;
-//        }
-//        return max;
-//    }
-//
-//    public void push_back(int value) {
-//        if (value >= max) {
-//            queue.add(max);
-//            max = value;
-//        }
-//        queue.add(value);
-//    }
-//
-//    public int pop_front() {
-//        if (queue.isEmpty()) {
-//            return -1;
-//        }
-//        int result = queue.poll();
-//        if (result == max) {
-//            max = queue.poll();
-//        }
-//        return result;
-//    }
-
 }
