@@ -21,15 +21,24 @@ public class Solution59_II {
     Deque<Integer> deq;
 
     public int max_value() {
-        return 0;
+        return deq.size() == 0 ? -1 : deq.peek();
     }
 
     public void push_back(int value) {
-        //que.
+        que.offer(value);
+        while (value > max_value()) {
+            deq.pollLast();
+            deq.offer(value);
+        }
     }
 
     public int pop_front() {
-        return 0;
+
+        int result = que.size() != 0 ? que.poll() : -1;
+        if (result == deq.peek()) {
+            deq.poll();
+        }
+        return result;
     }
 
 //    LinkedList<Integer> queue = new LinkedList<Integer>();
