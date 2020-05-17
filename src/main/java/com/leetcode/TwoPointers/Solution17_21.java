@@ -1,4 +1,4 @@
-package com.leetcode.Stack;
+package com.leetcode.TwoPointers;
 
 /**
  * Created with IntelliJ IDEA
