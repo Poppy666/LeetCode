@@ -15,7 +15,20 @@ package com.leetcode.TwoPointers;
 public class Solution27 {
 
     public int removeElement(int[] nums, int val) {
-        return 0;
+
+        if (nums.length <= 0) {
+            return 0;
+        }
+        int i = 0;
+        int j = 0;
+        while (j < nums.length) {
+            if (nums[j] == val) {
+                j++;
+            } else {
+                nums[i++] = nums[j++]; //这里每次都会将值进行移动，有更优的办法->当元素值与目标值相等时，把元素值与数组最后一个元素交换，并删除最后一个元素
+            }
+        }
+        return i;
 
     }
 

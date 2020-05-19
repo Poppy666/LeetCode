@@ -12,6 +12,13 @@ package com.leetcode.TwoPointers;
 public class Solution28 {
 
     public int strStr(String haystack, String needle) {
+
+        if(haystack==null||haystack.length()==0){
+            return -1;
+        }
+
+
+
         //定义：空字符串返回0？
         return 0;
     }
