@@ -1,5 +1,7 @@
 package com.leetcode.TwoPointers;
 
+import org.checkerframework.checker.units.qual.C;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -26,15 +28,15 @@ public class Solution28 {
             return -1;
         }
 
-//        //Rabin-Karp
-//        int h = 0;
-//
-//        for (int i = 0; i < haystack.length() - needle.length() + 1; i++) {
-//
-//            h =
-//        }
-//
-//        //KMP
+        //Rabin-Karp
+        int h = 0;
+
+        for (int i = 0; i < haystack.length() - needle.length() + 1; i++) {
+
+            h = haystack.charAt(i);
+        }
+
+        //KMP
 
 
 
@@ -43,6 +45,10 @@ public class Solution28 {
         //定义：空字符串返回0？
         return 0;
     }
+
+//    private int hash(){
+//
+//    }
 
 
 
