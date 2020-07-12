@@ -5,6 +5,7 @@ package com.leetcode.List;
  * Project: 206. 反转链表
  * 输入: 1->2->3->4->5->NULL
  * 输出: 5->4->3->2->1->NULL
+ * 相关题目：Solution234_method2
  * Author: jingren
  * Date: 2020/7/4
  * Time: 上午11:51
