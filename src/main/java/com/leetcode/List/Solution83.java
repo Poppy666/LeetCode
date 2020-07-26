@@ -21,7 +21,7 @@ public class Solution83 {
         ListNode current = head;
         while (current != null && current.next != null) {
             if (current.val == current.next.val) {
-                current.next = current.next.next;
+                current.next = current.next.next; //不是curr = curr.next.next; 这样并没有修改链接，只是遍历的时候跳过了重复节点
             } else {
                 current = current.next;
             }
