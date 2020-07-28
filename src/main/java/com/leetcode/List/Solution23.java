@@ -20,7 +20,8 @@ public class Solution23 {
         ListNode curr = head;
         while (curr != null && curr.next != null) {
             if (curr.next.val == curr.val) {
-                curr.next = curr.next.next; //为什么不是curr = curr.next.next;
+                //为什么不是curr = curr.next.next; 这种方式只是遍历的时候跳过了一个节点而非删除了一个节点
+                curr.next = curr.next.next;
             } else {
                 curr = curr.next;
             }
