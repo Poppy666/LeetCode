@@ -10,6 +10,7 @@ package com.leetcode.List;
  * 输入: 1->2->6->3->4->5->6, val = 6
  * 输出: 1->2->3->4->5
  * <p>
+ * 类似题型：Solution237
  * Author: jingren
  * Date: 2020/7/26
  * Time: 6:12 PM
