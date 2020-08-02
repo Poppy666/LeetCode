@@ -7,7 +7,7 @@ package com.leetcode.List;
  * 请你返回该链表所表示数字的 十进制值 。
  * 输入：head = [1,0,1]
  * 输出：5
- * 思路:
+ * 思路: 链表移动到右侧下一个节点的过程，就是二进制数左移1位的结果。
  * Author: jingren
  * Date: 2020/7/31
  * Time: 下午6:15
@@ -15,17 +15,16 @@ package com.leetcode.List;
 public class Solution1290 {
 
     public int getDecimalValue(ListNode head) {
-//        if (head == null) {
-//            return 0;
-//        }
-//        ListNode curr = head;
-//        int result = 0;
-//        int i = 0;
-//        while (curr != null) {
-//            result += (curr.val ^ 1) * Math.pow(2, i++);
-//            curr = curr.next;
-//        }
-//        return result;
+        if (head == null) {
+            return 0;
+        }
+        int res = 0;
+        ListNode curr = head;
+        while (curr != null) {
+            res = (res << 1) + curr.val;  //注意要加括号，不然先计算的是1+curr.val
+            curr = curr.next;
+        }
+        return res;
 
     }
 

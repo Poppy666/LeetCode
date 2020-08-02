@@ -22,8 +22,9 @@ public class Solution203 {
             return null;
         }
         ListNode pre = new ListNode(-1);
+        pre.next = head;
         ListNode curr = pre;
-        while (curr != null && curr.next != null) {
+        while (curr != null  && curr.next!=null) {
             if (curr.next.val == val) {
                 curr.next = curr.next.next;
             } else {
@@ -31,7 +32,6 @@ public class Solution203 {
             }
         }
         return pre.next;
-
     }
 
     public class ListNode {
