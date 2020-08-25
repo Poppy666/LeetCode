@@ -18,13 +18,28 @@ public class Solution82 {
 
     public ListNode deleteDuplicates(ListNode head) {
 
-
+        if(head == null){
+            return null;
+        }
+        ListNode pre = new ListNode(-1);
+        pre.next = head;
+        ListNode curr = pre;
+        while (curr != null && curr.next!=null) {
+            ListNode temp = curr.next;
+            ListNode nextNode = temp.next;
+            while (nextNode!=null && nextNode.val == temp.val){
+                nextNode = nextNode.next;
+            }
+            curr.next = nextNode;
+            curr = nextNode;
+        }
+        return pre.next;
 
     }
 
     public class ListNode {
         int val;
-        Solution83.ListNode next;
+        ListNode next;
 
         ListNode(int x) {
             val = x;
