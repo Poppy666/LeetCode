@@ -35,6 +35,7 @@ public class Solution_02_02 {
         if (head == null) {
             return -1;
         }
+        return -1;
 
     }
 
