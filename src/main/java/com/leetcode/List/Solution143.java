@@ -14,17 +14,31 @@ package com.leetcode.List;
 public class Solution143 {
 
     public void reorderList(ListNode head) {
-        if(head == null || head.next==null){
+        if (head == null || head.next == null) {
             return;
         }
 
         ListNode midNode = findMidNode(head);
         ListNode lastHalf = reverse(midNode);
         ListNode pre = new ListNode(-1);
-
-
-
-
+        ListNode p = head;
+        ListNode q = lastHalf;
+        pre.next = head;
+        ListNode curr = pre;
+        int i = 0;
+        while (p != null && q != null) {
+            if (i == 0) {
+                curr.next = p;
+                p = p.next;
+                i = 1;
+            } else {
+                curr.next = q;
+                q = q.next;
+                i = 0;
+            }
+            curr = curr.next;
+        }
+        return;
     }
 
     private ListNode findMidNode(ListNode head){
@@ -39,10 +53,8 @@ public class Solution143 {
     }
 
     private ListNode reverse(ListNode head){
-        if(head == null || head.next == null){
-            return;
-        }
         ListNode node = reverse(head.next);
+
 
 
 
