@@ -19,7 +19,7 @@ public class Solution143 {
         }
 
         ListNode midNode = findMidNode(head);
-        ListNode lastHalf = reverse(midNode);
+        ListNode lastHalf = reverse2(midNode);
         ListNode pre = new ListNode(-1);
         ListNode p = head;
         ListNode q = lastHalf;
@@ -52,11 +52,31 @@ public class Solution143 {
         return slow;
     }
 
+    //递归  3—>4->5->1   5->4->3     5->1->null    null->3->4   null<-3<-4
     private ListNode reverse(ListNode head){
-        ListNode node = reverse(head.next);
+        if (head == null || head.next == null) {
+            return head;
+        }
+        ListNode temp = reverse(head.next);
+        head.next.next = head;
+        head.next = null;
 
+        return temp;
+    }
 
+    private ListNode reverse2(ListNode head) {
 
+        ListNode curr = head;
+        ListNode pre = null;
+        while (curr != null) {
+
+            ListNode temp = curr.next;
+            curr.next = pre;
+
+            pre = curr;
+            curr = temp;
+        }
+        return pre;
 
     }
 
