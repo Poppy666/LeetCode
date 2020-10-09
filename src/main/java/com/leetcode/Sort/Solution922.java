@@ -17,18 +17,29 @@ public class Solution922 {
 
     public int[] sortArrayByParityII(int[] A) {
 
-        int i = 0;
-        while (i < A.length-1) {
-            if (A[i] % 2 != i % 2) {
-                int j = i + 1;
-                while ( j< A.length && A[j] % 2 == j % 2){
-                    j++;
+        int j = 1;
+        for (int i = 0; i < A.length - 1; i += 2) {
+            if (A[i] % 2 == 1) {
+                while (A[j] % 2 == 1) {
+                    j += 2;
                 }
                 swap(A, i, j);
             }
-            i++;
         }
         return A;
+
+//        int i = 0;
+//        while (i < A.length-1) {
+//            if (A[i] % 2 != i % 2) {
+//                int j = i + 1;
+//                while (j < A.length && (A[j] % 2 == j % 2 || j % 2 != i % 2)) {
+//                    j++;
+//                }
+//                swap(A, i, j);
+//            }
+//            i++;
+//        }
+
     }
 
     public void swap(int[] A, int i, int j) {
