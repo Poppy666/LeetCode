@@ -28,18 +28,6 @@ public class Solution922 {
         }
         return A;
 
-//        int i = 0;
-//        while (i < A.length-1) {
-//            if (A[i] % 2 != i % 2) {
-//                int j = i + 1;
-//                while (j < A.length && (A[j] % 2 == j % 2 || j % 2 != i % 2)) {
-//                    j++;
-//                }
-//                swap(A, i, j);
-//            }
-//            i++;
-//        }
-
     }
 
     public void swap(int[] A, int i, int j) {
