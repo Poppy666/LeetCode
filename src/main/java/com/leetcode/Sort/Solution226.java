@@ -10,7 +10,7 @@ package com.leetcode.Sort;
 public class Solution226 {
 
     public TreeNode invertTree(TreeNode root) {
-
+        return null;
     }
 
     public class TreeNode {
