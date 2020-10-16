@@ -18,10 +18,10 @@ public class Solution1491 {
             return 0;
         }
         Arrays.sort(salary);
-        int sum = 0;
+        double sum = 0;
         for (int s : salary) {
             sum += s;
         }
-        return sum - salary[0] - salary[salary.length - 1] / salary.length - 2;
+        return (sum - salary[0] - salary[salary.length - 1]) / (salary.length - 2);
     }
 }
