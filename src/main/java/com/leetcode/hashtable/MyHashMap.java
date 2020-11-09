@@ -1,6 +1,8 @@
 package com.leetcode.hashtable;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA
@@ -18,49 +20,33 @@ import java.util.LinkedList;
  * Date: 2020/11/5
  */
 public class MyHashMap {
-
-    LinkedList[] buckets;
+    private List<Bucket> buckets;
     private final int length = 769;
 
     /** Initialize your data structure here. */
     public MyHashMap() {
-        buckets = new LinkedList[length];
+        buckets = new ArrayList<>(length);
+        for(int i=0;i<length;i++){
+            buckets.add(new Bucket());
+        }
     }
 
     /** value will always be non-negative. */
     public void put(int key, int value) {
-//        int hash = key % length;
-//        LinkedList list = buckets[hash];
-//        if (list == null) {
-//            LinkedList<Object> ll = new LinkedList<>();
-//            ll.add(value);
-//            buckets[hash] = ll;
-//        }else {
-//            list.get()
-//
-//        }
+        int hash = key % length;
+        buckets.get(hash).upsert(key, value);
     }
 
     /** Returns the value to which the specified key is mapped, or -1 if this map contains no mapping for the key */
     public int get(int key) {
         int hash = key % length;
-        LinkedList list = buckets[hash];
-        if (list != null) {
-//            for(Object item :list){
-//                if(item.equals(key))
-//            }
-
-        }
-        return -1;
+        return buckets.get(hash).get(key);
     }
 
     /** Removes the mapping of the specified value key if this map contains a mapping for the key */
     public void remove(int key) {
         int hash = key % length;
-        LinkedList list = buckets[hash];
-        if (list != null) {
-            list.remove((Object) key);
-        }
+        buckets.get(hash).remove(key);
     }
 
     /**
@@ -70,5 +56,57 @@ public class MyHashMap {
      * int param_2 = obj.get(key);
      * obj.remove(key);
      */
+
+    class Pair<U, V> {
+
+        public U key;
+        public V value;
+
+        public Pair(U key, V value) {
+            this.key = key;
+            this.value = value;
+        }
+
+    }
+
+    class Bucket{
+
+        LinkedList<Pair<Integer, Integer>> buckets;
+
+
+        public Bucket() {
+            this.buckets = new LinkedList<Pair<Integer, Integer>>();
+        }
+
+        public void upsert(Integer key, Integer value) {
+            for(Pair<Integer, Integer> pair : buckets){
+                if(pair.key.equals(key)){
+                    pair.value = value;
+                    return;
+                }
+            }
+            Pair<Integer, Integer> pair = new Pair<>(key,value);
+            buckets.add(pair);
+
+        }
+
+        public Integer get(Integer key) {
+            for(Pair<Integer, Integer> pair : buckets){
+                if(pair.key.equals(key)){
+                    return pair.value;
+                }
+            }
+            return -1;
+        }
+
+        public void remove(Integer key) {
+            for(Pair<Integer, Integer> pair : buckets){
+                if(pair.key.equals(key)){
+                    buckets.remove(pair);
+                    break;
+                }
+            }
+        }
+    }
 
 }

@@ -19,7 +19,6 @@ import java.util.LinkedList;
  */
 public class MyHashSet {
 
-    //    LinkedList<Object> list;
     LinkedList[] buckets;
     private final int length = 769;
 
@@ -28,33 +27,32 @@ public class MyHashSet {
      */
     public MyHashSet() {
         buckets = new LinkedList[length];
-//        for(int i=0;i<length;i++){
-//            buckets[i] = new LinkedList<>();
-//        }
-//        list = new LinkedList<>();
+
     }
 
     public void add(int key) {
 
         int hash = key % length;
-        if (buckets[hash] == null) {
-            LinkedList<Object> list = new LinkedList<>();
-            list.add(key);
-            buckets[hash] = list;
+        LinkedList list = buckets[hash];
+        if (list == null) {
+            LinkedList<Object> ll = new LinkedList<>();
+            ll.add(key);
+            buckets[hash] = ll;
+        }else {
+            if(!list.contains(key)){
+                list.add(key);
+            }
         }
-//        if(!contains(key)){
-//            list.add(key);
-//        }
     }
 
     public void remove(int key) {
+
         int hash = key % length;
         LinkedList list = buckets[hash];
         if (list != null) {
             list.remove((Object) key);
         }
 
-//        list.remove((Object) key);
     }
 
     /**
