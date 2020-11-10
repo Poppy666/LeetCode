@@ -16,6 +16,6 @@ package com.leetcode.hashtable;
 public class Solution463 {
 
     public int islandPerimeter(int[][] grid) {
-
+        return 0;
     }
 }
