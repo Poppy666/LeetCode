@@ -11,6 +11,6 @@ package com.leetcode.hashtable;
 public class Solution500 {
 
     public String[] findWords(String[] words) {
-
+        return null;
     }
 }
