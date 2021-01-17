@@ -15,7 +15,7 @@ public class Solution42 {
 
     public int trap(int[] height) {
 
-        //对于非0数，找到下一个大于等于当前值的位置(两者之间才可能蓄水)，然后计算两者之间的蓄水量
+        //找到下一个大于等于当前值的位置(两者之间才可能蓄水)，然后计算两者之间的蓄水量
         Stack<Integer> stack = new Stack<>(); //存放下一个高位的位置
         int[] loc = new int[height.length];
         int ans = 0;
