@@ -1,5 +1,6 @@
 package com.leetcode;
 
+
 import java.util.*;
 
 /**
@@ -26,57 +27,120 @@ import java.util.*;
  */
 public class LRUCache {
 
-    int[] nums; //存储key，value
-    HashMap<Integer, Integer> useFreMap; //存储key，更新时间
+    public class ListNode {
+        int val;
+        ListNode pre;
+        ListNode next;
+
+        ListNode(int x) {
+            val = x;
+        }
+    }
+
+    public void addToHead(ListNode node){
+        head.next = node;
+        node.next = head.next.next;
+        node.pre = head;
+        head.next.pre = node;
+    }
+
+    public void removeNode(ListNode node){
+        node.pre.next = node.next;
+        node.next.pre = node.pre;
+
+    }
+
+    public void moveToHead(ListNode node){
+        removeNode(node);
+        addToHead(node);
+    }
+
+    Map<Integer, ListNode> map;
+    ListNode head;
+    ListNode tail;
     int capacity;
-    int fre = 0; //记录数据的更新时间
-    int len = 0; //记录存入数据的个数
+    int size;
+
+//    int[] nums; //存储key，value
+//    HashMap<Integer, Integer> useFreMap; //存储key，更新时间
+//    int capacity;
+//    int fre = 0; //记录数据的更新时间
+//    int len = 0; //记录存入数据的个数
 
     public LRUCache(int capacity) {
 
-        nums = new int[3001];
+        head.next = tail;
+        tail.pre = head;
+        map = new HashMap<>();
         this.capacity = capacity;
 
-        useFreMap = new HashMap<>();
+//        nums = new int[3001];
+//        this.capacity = capacity;
+//
+//        useFreMap = new HashMap<>();
     }
 
     public int get(int key) {
-        if (nums[key] != 0) {
-            fre++;
-            useFreMap.put(key, fre);
-            return nums[key];
-        } else {
+
+        if(map.containsKey(key)) {
+            moveToHead(map.get(key));
+            return map.get(key).val;
+        }else {
             return -1;
         }
+//        if (nums[key] != 0) {
+//            fre++;
+//            useFreMap.put(key, fre);
+//            return nums[key];
+//        } else {
+//            return -1;
+//        }
     }
 
     public void put(int key, int value) {
 
-        if(nums[key] != 0){
-            nums[key] = value;
+        ListNode node = map.get(key);
 
-        }else if(len < capacity){
-            nums[key] = value;
-            len ++;
-        }else{
-            //移除最少使用
-            List<Map.Entry<Integer, Integer>> list = new ArrayList<Map.Entry<Integer, Integer>>(useFreMap.entrySet());
-            Collections.sort(list, new Comparator<Map.Entry<Integer, Integer>>() {
-                @Override
-                public int compare(Map.Entry<Integer, Integer> o1, Map.Entry<Integer, Integer> o2) {
-                    return o1.getValue().compareTo(o2.getValue());
-                }
-            });
-            Integer delKey = list.get(0).getKey();
-            nums[delKey]=0;
-            len --;
-            useFreMap.remove(delKey);
+        if(node!=null){
+            moveToHead(node);
+            node.val = value;
+        }else if(size<capacity){
 
-            nums[key]=value;
-            len ++;
+            addToHead(new ListNode(value));
+            removeNode(tail.pre);
+            map.put(key,new ListNode(value));
+
+        }else {
+            addToHead(new ListNode(value));
+            map.put(key,new ListNode(value));
+            size++;
         }
-        fre++;
-        useFreMap.put(key, fre);
+
+//        if(nums[key] != 0){
+//            nums[key] = value;
+//
+//        }else if(len < capacity){
+//            nums[key] = value;
+//            len ++;
+//        }else{
+//            //移除最少使用
+//            List<Map.Entry<Integer, Integer>> list = new ArrayList<Map.Entry<Integer, Integer>>(useFreMap.entrySet());
+//            Collections.sort(list, new Comparator<Map.Entry<Integer, Integer>>() {
+//                @Override
+//                public int compare(Map.Entry<Integer, Integer> o1, Map.Entry<Integer, Integer> o2) {
+//                    return o1.getValue().compareTo(o2.getValue());
+//                }
+//            });
+//            Integer delKey = list.get(0).getKey();
+//            nums[delKey]=0;
+//            len --;
+//            useFreMap.remove(delKey);
+//
+//            nums[key]=value;
+//            len ++;
+//        }
+//        fre++;
+//        useFreMap.put(key, fre);
     }
 
 
