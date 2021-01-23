@@ -29,19 +29,28 @@ public class LRUCache {
 
     public class ListNode {
         int val;
+        int key;
         ListNode pre;
         ListNode next;
 
-        ListNode(int x) {
-            val = x;
+        ListNode(){}
+
+        ListNode(int key,int val) {
+            this.key = key;
+            this.val = val;
         }
     }
 
     public void addToHead(ListNode node){
-        head.next = node;
-        node.next = head.next.next;
         node.pre = head;
+        node.next = head.next;
         head.next.pre = node;
+        head.next = node;
+
+//        head.next = node;
+//        node.next = head.next;
+//        node.pre = head;
+//        head.next.pre = node;
     }
 
     public void removeNode(ListNode node){
@@ -61,23 +70,14 @@ public class LRUCache {
     int capacity;
     int size;
 
-//    int[] nums; //存储key，value
-//    HashMap<Integer, Integer> useFreMap; //存储key，更新时间
-//    int capacity;
-//    int fre = 0; //记录数据的更新时间
-//    int len = 0; //记录存入数据的个数
-
     public LRUCache(int capacity) {
-
+        head = new ListNode();
+        tail = new ListNode();
         head.next = tail;
         tail.pre = head;
         map = new HashMap<>();
         this.capacity = capacity;
-
-//        nums = new int[3001];
-//        this.capacity = capacity;
-//
-//        useFreMap = new HashMap<>();
+        this.size = 0;
     }
 
     public int get(int key) {
@@ -88,13 +88,6 @@ public class LRUCache {
         }else {
             return -1;
         }
-//        if (nums[key] != 0) {
-//            fre++;
-//            useFreMap.put(key, fre);
-//            return nums[key];
-//        } else {
-//            return -1;
-//        }
     }
 
     public void put(int key, int value) {
@@ -102,45 +95,24 @@ public class LRUCache {
         ListNode node = map.get(key);
 
         if(node!=null){
-            moveToHead(node);
             node.val = value;
-        }else if(size<capacity){
-
-            addToHead(new ListNode(value));
-            removeNode(tail.pre);
-            map.put(key,new ListNode(value));
-
+            moveToHead(node);
         }else {
-            addToHead(new ListNode(value));
-            map.put(key,new ListNode(value));
+            ListNode newNode = new ListNode(key, value);
+            addToHead(newNode);
+            map.put(key,newNode);
             size++;
+
+            if(size>capacity) {
+            //超出容量时，先移除节点
+            ListNode deleNode = tail.pre;
+            removeNode(deleNode);
+            map.remove(deleNode.key);
+            size--;
+            }
+
         }
 
-//        if(nums[key] != 0){
-//            nums[key] = value;
-//
-//        }else if(len < capacity){
-//            nums[key] = value;
-//            len ++;
-//        }else{
-//            //移除最少使用
-//            List<Map.Entry<Integer, Integer>> list = new ArrayList<Map.Entry<Integer, Integer>>(useFreMap.entrySet());
-//            Collections.sort(list, new Comparator<Map.Entry<Integer, Integer>>() {
-//                @Override
-//                public int compare(Map.Entry<Integer, Integer> o1, Map.Entry<Integer, Integer> o2) {
-//                    return o1.getValue().compareTo(o2.getValue());
-//                }
-//            });
-//            Integer delKey = list.get(0).getKey();
-//            nums[delKey]=0;
-//            len --;
-//            useFreMap.remove(delKey);
-//
-//            nums[key]=value;
-//            len ++;
-//        }
-//        fre++;
-//        useFreMap.put(key, fre);
     }
 
 
