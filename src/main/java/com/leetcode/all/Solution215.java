@@ -27,10 +27,9 @@ public class Solution215 {
 
     public int findKthLargest(int[] nums, int k) {
         Arrays.sort(nums);
-        System.out.println(nums);
 
-        for (int i = nums.length; i > 0; i--) {
-            if (i == k - 1) {
+        for (int i = nums.length; i >= 0; i--) {
+            if (i == nums.length - k) {
                 return nums[i];
             }
         }
@@ -38,9 +37,5 @@ public class Solution215 {
 
     }
 
-    public static void main(String[] args){
-        Solution215 s = new Solution215();
-        int[] nums = new int[]{3,2,1,5,6,4};
-        s.findKthLargest(nums,2);
-    }
+
 }
