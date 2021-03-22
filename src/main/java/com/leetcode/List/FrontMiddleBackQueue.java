@@ -33,31 +33,31 @@ public class FrontMiddleBackQueue {
         }
     }
 
-    public FrontMiddleBackQueue() {
-        new ListNode(0);
-    }
-
-    public void pushFront(int val) {
-
-    }
-
-    public void pushMiddle(int val) {
-
-    }
-
-    public void pushBack(int val) {
-
-    }
-
-    public int popFront() {
-
-    }
-
-    public int popMiddle() {
-
-    }
-
-    public int popBack() {
-
-    }
+//    public FrontMiddleBackQueue() {
+//        new ListNode(0);
+//    }
+//
+//    public void pushFront(int val) {
+//
+//    }
+//
+//    public void pushMiddle(int val) {
+//
+//    }
+//
+//    public void pushBack(int val) {
+//
+//    }
+//
+//    public int popFront() {
+//
+//    }
+//
+//    public int popMiddle() {
+//
+//    }
+//
+//    public int popBack() {
+//
+//    }
 }

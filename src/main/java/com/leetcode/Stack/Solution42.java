@@ -6,6 +6,9 @@ import java.util.Stack;
  * Created with IntelliJ IDEA
  * Project: 42. 接雨水
  * 给定 n 个非负整数表示每个宽度为 1 的柱子的高度图，计算按此排列的柱子，下雨之后能接多少雨水。
+ * //什么情况下才能装雨水？->左边和右边都比自己高时->什么情况下雨水装得最多？->对自己而言，左边最高的那个位置和右边最高的那个位置->实际装雨水的量怎么算->当然是以短板为准，因此是雨水的高度是min(左边最高，右边最高)
+ * //思路：分别从左遍历和从右遍历记录当前位置，左右两侧的高位，在这过程中叠加雨水
+ *
  * 四种解法：查看答案：https://leetcode-cn.com/problems/trapping-rain-water/solution/jie-yu-shui-by-leetcode/
  * Author: jingren
  * Date: 2020/12/27
