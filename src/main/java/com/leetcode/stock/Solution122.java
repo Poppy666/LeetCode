@@ -1,4 +1,4 @@
-package com.leetcode.hashtable;
+package com.leetcode.stock;
 
 /**
  * Created with IntelliJ IDEA
@@ -17,6 +17,7 @@ package com.leetcode.hashtable;
 
  思路：画图法。画出折线图后，可以看出多次交易的利润绝对比一次交易大，因此记录每次的买点，更新利润即可
 
+
  * Author: jingren
  * Date: 2020/11/10
  */
@@ -33,4 +34,15 @@ public class Solution122 {
         }
         return result;
     }
+
+    //遍历整个股票交易日价格列表 price，策略是所有上涨交易日都买卖（赚到所有利润），所有下降交易日都不买卖（永不亏钱）。
+    public int maxProfit2(int[] prices) {
+        int profit = 0;
+        for (int i = 1; i < prices.length; i++) {
+            int tmp = prices[i] - prices[i - 1];
+            if (tmp > 0) profit += tmp;
+        }
+        return profit;
+    }
+
 }

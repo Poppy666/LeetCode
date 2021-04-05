@@ -1,5 +1,6 @@
 package com.leetcode.hashtable;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -29,17 +30,23 @@ import java.util.Map;
  */
 public class Solution690 {
 
+    HashMap<Integer, Employee> map = new HashMap<>();
+
     public int getImportance(List<Employee> employees, int id) {
-        Map<Integer, Employee> map = new HashMap<>();
-        for (Employee employee : employees) {
-            map.put(employee.id, employee);
+        List<Integer> subordinates = new ArrayList<>();
+        for(Employee e:employees){
+            map.put(e.id,e);
         }
+        return dfs(id);
+    }
 
-        Employee boss = map.get(id);
-        List<Integer> subordinates = boss.subordinates;
-        return 0;
-
-
+    public int dfs(int id){
+        Employee e = map.get(id);
+        int sum = e.importance;
+        for(Integer s:e.subordinates){
+            sum += dfs(s);
+        }
+        return sum;
     }
 
     class Employee {
