@@ -56,4 +56,48 @@ public class Solution59_I {
         int[] result = test.maxSlidingWindow(nums, 1);
         System.out.println(Arrays.toString(result));
     }
+
+
+
+//    int max = Integer.MIN_VALUE;
+//
+//    public int[] maxSlidingWindow2(int[] nums, int k) {
+//
+//        if (nums == null || nums.length == 0) {
+//            return new int[0];
+//        }
+//
+//        int[] result = new int[nums.length - k + 1];
+//        int j = 0;
+//        int n = 0; //记录滑出的位置
+//        int maxInd = -1; //记录最大值下标
+//        for (int i = 0; i < k; i++) {
+//            if (nums[i] >= max) {
+//                max = nums[i];
+//                maxInd = i;
+//            }
+//        }
+//        result[j++] = max;
+//        for (int i = k; i < nums.length; i++) {
+//            if (maxInd <= n || maxInd > i) {
+//                //滑过了最大值，需要重新找最大值
+//                max = Integer.MIN_VALUE;
+//                for (int m = n + 1; m <= i; m++) {
+//                    if (nums[m] >= max) {
+//                        max = nums[m];
+//                        maxInd = m;
+//                    }
+//                }
+//            } else {
+//                if (nums[i] >= max) {
+//                    max = nums[i];
+//                    maxInd = i;
+//                }
+//            }
+//            n++;
+//            result[j++] = max;
+//        }
+//
+//        return result;
+//    }
 }
