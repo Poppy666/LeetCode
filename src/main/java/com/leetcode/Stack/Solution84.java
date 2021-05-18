@@ -21,33 +21,32 @@ public class Solution84 {
         /**
          * 为啥以下解答特殊案例无法通过，如[999,999,999,999]
          */
-//        int area = 0;
-//        Stack<Integer> stack = new Stack<>();
-//        int[] left = new int[heights.length];  //记录左边最远大于等于自己的那个位置
-//        //int[] right 注：不必再存一遍右边的值，从右往左遍历的时候，直接就可以计算面积了
-//        for(int i=0;i<heights.length;i++){
-//            int high = heights[i];
-//            left[i]= i;
-//            while(!stack.isEmpty() && high<=heights[stack.peek()]){
-//                left[i]= stack.pop();
-//            }
-//
-//            stack.push(i);
-//        }
-//        stack.clear();
-//
-//        for(int i=heights.length-1;i>=0;i--){
-//            int high = heights[i];
-//            int loc = i;
-//            while(!stack.isEmpty() && high<=heights[stack.peek()]){
-//                loc = stack.pop();
-//            }
-//            stack.push(i);
-//            int currArea = high*(loc - left[i]+1);
-//            area = Math.max(area,currArea);
-//        }
-//        return area;
-        return 0;
+        int area = 0;
+        Stack<Integer> stack = new Stack<>();
+        int[] left = new int[heights.length];  //记录左边最远大于等于自己的那个位置
+        //int[] right 注：不必再存一遍右边的值，从右往左遍历的时候，直接就可以计算面积了
+        for(int i=0;i<heights.length;i++){
+            int high = heights[i];
+            left[i]= i;
+            while(!stack.isEmpty() && high<=heights[stack.peek()]){
+                left[i]= stack.pop();
+            }
+
+            stack.push(i);
+        }
+        stack.clear();
+
+        for(int i=heights.length-1;i>=0;i--){
+            int high = heights[i];
+            int loc = i;
+            while(!stack.isEmpty() && high<=heights[stack.peek()]){
+                loc = stack.pop();
+            }
+            stack.push(i);
+            int currArea = high*(loc - left[i]+1);
+            area = Math.max(area,currArea);
+        }
+        return area;
 
 
     }
