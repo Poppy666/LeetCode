@@ -24,13 +24,6 @@ import java.util.HashMap;
 public class Solution567 {
 
     public boolean checkInclusion(String s1, String s2) {
-        if(s2.contains(s1) || s2.contains(StringUtils.reverse(s1))){
-            return true;
-        }
-        return false;
-    }
-
-    public boolean checkInclusion2(String s1, String s2) {
         if (s2.length() < s1.length()) {
             return false;
         }
@@ -90,7 +83,7 @@ public class Solution567 {
         String s2 = "eidbaooo";
 
         Solution567 s = new Solution567();
-        boolean result = s.checkInclusion2(s1, s2);
+        boolean result = s.checkInclusion(s1, s2);
     }
 
 
