@@ -1,4 +1,4 @@
-package com.leetcode.all;
+package com.leetcode.dp;
 
 /**
  * Created with IntelliJ IDEA
