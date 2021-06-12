@@ -1,4 +1,4 @@
-package com.leetcode.hashtable;
+package com.leetcode.stock;
 
 import java.util.Stack;
 
@@ -18,6 +18,7 @@ import java.util.Stack;
  解释: 在第 2 天（股票价格 = 1）的时候买入，在第 5 天（股票价格 = 6）的时候卖出，最大利润 = 6-1 = 5 。
  注意利润不能是 7-1 = 6, 因为卖出价格需要大于买入价格；同时，你不能在买入前卖出股票。
 
+ 思路：遍历的时候，记录买点，并更新利润。如果当前值比最小值还小，则更新买点，否则更新利润
 
 
  * Author: jingren

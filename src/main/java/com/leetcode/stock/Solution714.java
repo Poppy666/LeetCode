@@ -26,12 +26,39 @@ package com.leetcode.stock;
 public class Solution714 {
 
     public int maxProfit(int[] prices, int fee) {
-        return 0;
+        //动态规划
+        //dp[i,0],第i天不持有股票的收益
+        //dp[i,1],第i天持有股票的收益
+        // int[][] dp = new int[prices.length][2];
+        // dp[0][0]=0;
+        // dp[0][1]=-prices[0];
+        // for(int i=1;i<prices.length;i++){
+        //     dp[i][0]=Math.max(dp[i-1][0],dp[i-1][1]+prices[i]-fee);
+        //     dp[i][1]=Math.max(dp[i-1][0]-prices[i],dp[i-1][1]);
+        // }
+        // return dp[prices.length-1][0];
 
+        //节省空间的动态规划
+        int sold=0;
+        int buy=-prices[0];
+        for(int i=1;i<prices.length;i++){
+            sold=Math.max(sold,buy+prices[i]-fee);
+            buy=Math.max(sold-prices[i],buy);
+        }
+        return sold;
 
-
-
-
+        // //贪心算法：当我们卖出一支股票时，我们就立即获得了以相同价格并且免除手续费买入一支股票的权利。
+        // int profit = 0;
+        // int cost = prices[0]+fee;
+        // for(int i=1;i<prices.length;i++){
+        //     if(prices[i]+fee<cost){
+        //         cost = prices[i]+fee;
+        //     }else if(prices[i]>cost){
+        //         profit+=prices[i]-cost;
+        //         cost = prices[i];
+        //     }
+        // }
+        // return profit;
 
     }
 }
